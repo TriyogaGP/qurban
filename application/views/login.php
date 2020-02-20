@@ -37,7 +37,6 @@
   </head>
 
   <body class="login">
-    masuk gan
     <div>
       <a class="hiddenanchor" id="signup"></a>
       <a class="hiddenanchor" id="signin"></a>
