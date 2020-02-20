@@ -1,4 +1,4 @@
-var base_url = "";
+var base_url = "http://rumahcendekiabogor.com/qurbanqu/";
 //Pnotify
   let flashData = $('.flash-data').data('dataflash');
   let validasi = $('.flash-data').data('validasi');
