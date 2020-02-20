@@ -1,4 +1,5 @@
-var base_url = "http://rumahcendekiabogor.com/qurbanqu/";
+// var base_url = "http://http://rumahcendekiabogor.com/qurbanqu/";
+var base_url = "http://localhost/Qurbanku/";
 //Pnotify
   let flashData = $('.flash-data').data('dataflash');
   let validasi = $('.flash-data').data('validasi');
