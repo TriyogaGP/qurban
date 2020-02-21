@@ -120,6 +120,7 @@ $route['getmenu'] = 'Json/getmenu';
 $route['gethewan'] = 'Json/gethewan';
 $route['getcarihewan'] = 'Json/getcarihewan';
 $route['addcart'] = 'Json/addcart';
+$route['orderhewan'] = 'Json/orderhewan';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';

@@ -363,4 +363,13 @@ class Json extends CI_Controller {
             echo json_encode($data);
         }
     }
+
+    function orderhewan()
+    {
+        $tes = $this->input->post('tes');
+        $data = array(
+            "tes" => $tes,
+        );
+        echo json_encode($data);
+    }
 }
