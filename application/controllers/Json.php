@@ -264,7 +264,7 @@ class Json extends CI_Controller {
                     $total_seluruhkeranjang += $total_harga;
                 }
             }else{
-                $keranjangs = "kosong";
+                $keranjangs[] = "";
             }
 
             $myorder = $this->Dashboard_model->get_all_myorderBYJSON($hasil->id_reselleradmin);
@@ -292,7 +292,7 @@ class Json extends CI_Controller {
                     $total_seluruhmyorder += $total_harga;
                 }
             }else{
-                $myorders = "kosong";
+                $myorders[] = "";
             }    
             $posts = array(
                 "id_reselleradmin"  => $hasil->id_reselleradmin,
