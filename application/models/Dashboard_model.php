@@ -236,6 +236,32 @@ class Dashboard_model extends CI_Model{
         return $query;
     }
 
+    function get_all_keranjangBYJSON($id_reselleradmin){
+        $this->db->select('tbl_catalog.*,tbl_kategori.*,tbl_keranjang.*,tbl_reselleradmin.*');
+        $this->db->from('tbl_catalog');
+        $this->db->join('tbl_kategori','tbl_kategori.id_kategori=tbl_catalog.id_kategori');
+        $this->db->join('tbl_keranjang','tbl_keranjang.id_catalog=tbl_catalog.id_catalog');
+        $this->db->join('tbl_reselleradmin','tbl_reselleradmin.id_reselleradmin=tbl_keranjang.id_reselleradmin');
+        $this->db->where('tbl_reselleradmin.id_reselleradmin', $id_reselleradmin);
+        $this->db->where('tbl_catalog.status_sale', '0')->where('tbl_catalog.status_sale', '1');
+        $this->db->order_by('tbl_keranjang.update_date', 'ASC');
+        $query=$this->db->get();
+        return $query;
+    }
+
+    function get_all_myorderBYJSON($id_reselleradmin){
+        $this->db->select('tbl_catalog.*,tbl_kategori.*,tbl_keranjang.*,tbl_reselleradmin.*');
+        $this->db->from('tbl_catalog');
+        $this->db->join('tbl_kategori','tbl_kategori.id_kategori=tbl_catalog.id_kategori');
+        $this->db->join('tbl_keranjang','tbl_keranjang.id_catalog=tbl_catalog.id_catalog');
+        $this->db->join('tbl_reselleradmin','tbl_reselleradmin.id_reselleradmin=tbl_keranjang.id_reselleradmin');
+        $this->db->where('tbl_reselleradmin.id_reselleradmin', $id_reselleradmin);
+        $this->db->where('tbl_catalog.status_sale >', '1');
+        $this->db->order_by('tbl_keranjang.update_date', 'ASC');
+        $query=$this->db->get();
+        return $query;
+    }
+
     function insert_keranjang($kirimdata){
         $query = $this->db->insert('tbl_keranjang', $kirimdata);
         if($query){
