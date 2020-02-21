@@ -57,13 +57,13 @@
                   <li><a href="<?=base_url('compro')?>"><i class="fa fa-desktop"></i> Catalog Hewan Qurban</a></li>
                   <li><a><i class="fa fa-shopping-cart"></i> Purchase Order <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?=base_url('keranjang')?>"><i class="fa fa-shopping-cart"></i> Keranjang<?php if($this->session->userdata('ses_level') == 3){ ?> <span class="label label-success pull-right" data-toggle="tooltip" data-placement="right" title="Total keranjang anda"><?=$jml_keranjang?></span><?php } ?></a></li>
+                      <li><a href="<?=base_url('keranjang')?>"><i class="fa fa-shopping-cart"></i> Keranjang<?php if($this->session->userdata('ses_level') == 3){ ?> <span class="label label-success pull-right totalKeranjang" data-toggle="tooltip" data-placement="right" title="Total keranjang anda"><?=$jml_keranjang?></span><?php } ?></a></li>
                       <li><a href="<?=base_url('historykeranjang')?>"><i class="fa fa-history"></i> History Keranjang</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-users"></i> Customers <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="<?=base_url('customer/0')?>"><i class="fa fa-user"></i> Customer<?php if($this->session->userdata('ses_level') == 3){ ?> <span class="label label-success pull-right" data-toggle="tooltip" data-placement="right" title="Total customer anda"><?=$jml_customer?></span><?php } ?></a></li>
+                      <li><a href="<?=base_url('customer/0')?>"><i class="fa fa-user"></i> Customer<?php if($this->session->userdata('ses_level') == 3){ ?> <span class="label label-success pull-right totalCustomer" data-toggle="tooltip" data-placement="right" title="Total customer anda"><?=$jml_customer?></span><?php } ?></a></li>
                       <li><a href="<?=base_url('historycustomer')?>"><i class="fa fa-history"></i> History Customer</a></li>
                     </ul>
                   </li>

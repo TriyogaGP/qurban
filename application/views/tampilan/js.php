@@ -128,6 +128,58 @@
 	});
 
 	$(document).ready(function(){
+		function getJmlKeranjang()
+		{
+		  	$.ajax({
+			   	method:"GET",
+		   		url:"<?= base_url('getjmlKeranjang'); ?>",
+			   	// data:{view:view},
+			   	dataType:"json",
+			   	success:function(data)
+		   		{
+				    if(data.total > 0)
+		    		{
+		     			$('.totalKeranjang').html(data.total);
+			    	}else{
+			    		$('.totalKeranjang').html('0');
+			    	}
+				}
+			});
+		}
+		getJmlKeranjang();
+		 
+		setInterval(function(){ 
+			getJmlKeranjang();
+		}, 5000);
+	});
+
+	$(document).ready(function(){
+		function getJmlCustomer()
+		{
+		  	$.ajax({
+			   	method:"GET",
+		   		url:"<?= base_url('getjmlCustomer'); ?>",
+			   	// data:{view:view},
+			   	dataType:"json",
+			   	success:function(data)
+		   		{
+				    if(data.total > 0)
+		    		{
+		     			$('.totalKeranjang').html(data.total);
+			    	}else{
+			    		$('.totalKeranjang').html('0');
+			    	}
+				}
+			});
+		}
+		getJmlCustomer();
+		 
+		setInterval(function(){ 
+			getJmlCustomer();
+		}, 5000);
+	});
+
+	$(document).ready(function(){
 		function notifAdmin()
 		{
 		  	$.ajax({
