@@ -1,5 +1,5 @@
-// var base_url = "http://http://rumahcendekiabogor.com/qurbanqu/";
-var base_url = "http://localhost/Qurbanku/";
+var base_url = "http://rumahcendekiabogor.com/qurbanqu/";
+// var base_url = "http://localhost/Qurbanku/";
 //Pnotify
   let flashData = $('.flash-data').data('dataflash');
   let validasi = $('.flash-data').data('validasi');
@@ -28,14 +28,7 @@ var base_url = "http://localhost/Qurbanku/";
     });
   });
 
-//tambahan
-  $(function () {
-    CKEDITOR.replace('ckeditor',{
-      filebrowserImageBrowseUrl : base_url+'assets/kcfinder/browse.php',
-      height: '400px'             
-    });
-  });
-  
+//tambahan  
   function validAngkatelp(a)
   {
     if(!/^[0-9.]+$/.test(a.value))
