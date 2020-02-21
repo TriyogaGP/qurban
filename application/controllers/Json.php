@@ -239,53 +239,61 @@ class Json extends CI_Controller {
             if(empty($hasil->foto)){$foto = "user.png";}else{$foto = $hasil->foto;}
             $total_seluruhkeranjang = 0; 
             $total_seluruhmyorder = 0; 
-            $keranjang = $this->Dashboard_model->get_all_keranjangBYJSON($hasil->id_reselleradmin)->result();
-            foreach ($keranjang as $value) {
-                $total_jml = 0;
-                $jmlCatalogKeranjang = $this->Dashboard_model->get_total_keranjangBY($value->id_catalog); 
-                foreach ($jmlCatalogKeranjang->result_array() as $value1) {
-                    $total_jml += $value1['jml'];
+            $keranjang = $this->Dashboard_model->get_all_keranjangBYJSON($hasil->id_reselleradmin);
+            if($keranjang->num_rows()>0){
+                foreach ($keranjang->result() as $value) {
+                    $total_jml = 0;
+                    $jmlCatalogKeranjang = $this->Dashboard_model->get_total_keranjangBY($value->id_catalog); 
+                    foreach ($jmlCatalogKeranjang->result_array() as $value1) {
+                        $total_jml += $value1['jml'];
+                    }
+                    $total_harga = $value->harga * $value->bobot;
+                    $total = "Rp. ".number_format($value->harga * $value->bobot);
+                    $keranjangs[] = array(
+                        "id_keranjang"  => $value->id_keranjang,
+                        "id_catalog"    => $value->id_catalog,
+                        "jenis"         => $value->jenis,
+                        "kategori"      => $value->nama_kategori,
+                        "no_eartag"     => $value->no_eartag,
+                        "bobot"         => $value->bobot." Kg",
+                        "hargaperkg"    => "Rp. ".number_format($value->harga)." /Kg",
+                        "harga"         => $total,
+                        "usia"          => $value->usia,
+                        "totalReseller" => $total_jml." Reseller",
+                    );
+                    $total_seluruhkeranjang += $total_harga;
                 }
-                $total_harga = $value->harga * $value->bobot;
-                $total = "Rp. ".number_format($value->harga * $value->bobot);
-                $keranjangs[] = array(
-                    "id_keranjang"  => $value->id_keranjang,
-                    "id_catalog"    => $value->id_catalog,
-                    "jenis"         => $value->jenis,
-                    "kategori"      => $value->nama_kategori,
-                    "no_eartag"     => $value->no_eartag,
-                    "bobot"         => $value->bobot." Kg",
-                    "hargaperkg"    => "Rp. ".number_format($value->harga)." /Kg",
-                    "harga"         => $total,
-                    "usia"          => $value->usia,
-                    "totalReseller" => $total_jml." Reseller",
-                );
-                $total_seluruhkeranjang += $total_harga;
+            }else{
+                $keranjangs = "kosong";
             }
 
-            $myorder = $this->Dashboard_model->get_all_myorderBYJSON($hasil->id_reselleradmin)->result();
-            foreach ($myorder as $value) {
-                $total_jml = 0;
-                $jmlCatalogKeranjang = $this->Dashboard_model->get_total_keranjangBY($value->id_catalog); 
-                foreach ($jmlCatalogKeranjang->result_array() as $value1) {
-                    $total_jml += $value1['jml'];
+            $myorder = $this->Dashboard_model->get_all_myorderBYJSON($hasil->id_reselleradmin);
+            if($myorder->num_rows()>0){
+                foreach ($myorder->result() as $value) {
+                    $total_jml = 0;
+                    $jmlCatalogKeranjang = $this->Dashboard_model->get_total_keranjangBY($value->id_catalog); 
+                    foreach ($jmlCatalogKeranjang->result_array() as $value1) {
+                        $total_jml += $value1['jml'];
+                    }
+                    $total_harga = $value->harga * $value->bobot;
+                    $total = "Rp. ".number_format($value->harga * $value->bobot);
+                    $myorders[] = array(
+                        "id_keranjang"  => $value->id_keranjang,
+                        "id_catalog"    => $value->id_catalog,
+                        "jenis"         => $value->jenis,
+                        "kategori"      => $value->nama_kategori,
+                        "no_eartag"     => $value->no_eartag,
+                        "bobot"         => $value->bobot." Kg",
+                        "hargaperkg"    => "Rp. ".number_format($value->harga)." /Kg",
+                        "harga"         => $total,
+                        "usia"          => $value->usia,
+                        "totalReseller" => $total_jml." Reseller",
+                    );
+                    $total_seluruhmyorder += $total_harga;
                 }
-                $total_harga = $value->harga * $value->bobot;
-                $total = "Rp. ".number_format($value->harga * $value->bobot);
-                $myorders[] = array(
-                    "id_keranjang"  => $value->id_keranjang,
-                    "id_catalog"    => $value->id_catalog,
-                    "jenis"         => $value->jenis,
-                    "kategori"      => $value->nama_kategori,
-                    "no_eartag"     => $value->no_eartag,
-                    "bobot"         => $value->bobot." Kg",
-                    "hargaperkg"    => "Rp. ".number_format($value->harga)." /Kg",
-                    "harga"         => $total,
-                    "usia"          => $value->usia,
-                    "totalReseller" => $total_jml." Reseller",
-                );
-                $total_seluruhmyorder += $total_harga;
-            }
+            }else{
+                $myorders = "kosong";
+            }    
             $posts = array(
                 "id_reselleradmin"  => $hasil->id_reselleradmin,
                 "nama"              => $hasil->nama,
