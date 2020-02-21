@@ -19,10 +19,12 @@ class Cronjob extends CI_Controller {
 				$total_jml += $value1['jml'];
 			}
 			if($total_jml == 1){
-				$kirimdata['status_sale'] = "0";
-				$kirimdata['aktif_state'] = "1";
-				$this->Dashboard_model->update_catalog($kirimdata,$value->id_catalog);
-	    		$this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
+	    		$success = $this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
+	    		if($success){
+	    			$kirimdata['status_sale'] = "0";
+					$kirimdata['aktif_state'] = "1";
+					$this->Dashboard_model->update_catalog($kirimdata,$value->id_catalog);
+	    		}
 			}else{
 	    		$this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
 			}
@@ -36,11 +38,13 @@ class Cronjob extends CI_Controller {
 		$DataCronjob=$this->db->query("SELECT A.id_catalog,A.id_reselleradmin,B.status_sale,B.id_catalog,C.id_customer,C.id_catalog,C.id_reselleradmin,C.update_date,C.status FROM tbl_keranjang AS A INNER JOIN tbl_catalog AS B ON A.id_catalog=B.id_catalog INNER JOIN tbl_customer AS C ON C.id_catalog=A.id_catalog WHERE DATE_ADD(C.update_date, INTERVAL 1 HOUR)<'$waktu' && B.status_sale='2' && C.status='0'");
 		if($DataCronjob->num_rows() > 0){
 			foreach ($DataCronjob->result() as $value) {
-				$kirimdata['status_sale'] = "0";
-				$kirimdata['aktif_state'] = "1";
-				$this->Dashboard_model->update_catalog($kirimdata,$value->id_catalog);
-	    		$this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
 	    		$this->Dashboard_model->hapus_customer($value->id_reselleradmin,$value->id_catalog);
+	    		$success = $this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
+	    		if($success){
+	    			$kirimdata['status_sale'] = "0";
+					$kirimdata['aktif_state'] = "1";
+					$this->Dashboard_model->update_catalog($kirimdata,$value->id_catalog);
+	    		}
 			}
 		}
 	}
