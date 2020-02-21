@@ -172,7 +172,7 @@ class Json extends CI_Controller {
                 );
             }
         }else{
-            $sapis[];
+            $sapis = array();
         }
         if($data_kambing->num_rows() > 0){
             foreach ($data_kambing->result() as $kambing_hasil)
@@ -204,7 +204,7 @@ class Json extends CI_Controller {
                 );
             }
         }else{
-            $kambings[];
+            $kambings = array();
         }
         if($data_sapi || $data_kambing){
             $response['data_sapi'] = $sapis;
@@ -264,7 +264,7 @@ class Json extends CI_Controller {
                     $total_seluruhkeranjang += $total_harga;
                 }
             }else{
-                $keranjangs[];
+                $keranjangs = array();
             }
 
             $myorder = $this->Dashboard_model->get_all_myorderBYJSON($hasil->id_reselleradmin);
@@ -292,7 +292,7 @@ class Json extends CI_Controller {
                     $total_seluruhmyorder += $total_harga;
                 }
             }else{
-                $myorders[];
+                $myorders = array();
             }    
             $posts = array(
                 "id_reselleradmin"  => $hasil->id_reselleradmin,
