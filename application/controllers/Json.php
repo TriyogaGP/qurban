@@ -1,18 +1,18 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Json extends CI_Controller {
+    var $versi;
     function __construct()
     {
 		parent::__construct();
 		$this->load->model('Dashboard_model');
 		$this->load->model('Login_model');
+        $this->versi = "1.00";
 	}
 
     function header($versi)
     {
         header('Content-Type: application/json');
-        $versi = "1.00";
-        return $versi;
     }
 
     function getmenu()
@@ -373,11 +373,11 @@ class Json extends CI_Controller {
 
     function orderhewan()
     {
-        $this->header($versi);
+        $this->header();
         $tes = $this->input->post('tes');
         $data = array(
             "tes" => $tes,
-            "versi" => $versi,
+            "versi" => $this->versi,
         );
         echo json_encode($data);
     }
