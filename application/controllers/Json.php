@@ -17,8 +17,7 @@ class Json extends CI_Controller {
 
     function getmenu()
     {
-        $this->header()
-
+        $this->header();
         $data_sapi = $this->Dashboard_model->get_all_menucatalogSapi()->result();
         $data_kambing = $this->Dashboard_model->get_all_menucatalogKambing()->result();
         $response = array();
