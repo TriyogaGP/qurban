@@ -10,7 +10,7 @@ class Json extends CI_Controller {
         $this->versi = "1.00";
 	}
 
-    function header($versi)
+    function header()
     {
         header('Content-Type: application/json');
     }
@@ -366,7 +366,8 @@ class Json extends CI_Controller {
     function orderhewan()
     {
         $this->header();
-        $tes = $this->input->post('tes');
+        $id_catalog = $this->input->post('id_catalog');
+        $id_catalog = $this->input->post('id_catalog');
         $data = array(
             "tes" => $tes,
             "versi" => $this->versi,
