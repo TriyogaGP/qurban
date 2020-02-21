@@ -243,7 +243,7 @@ class Dashboard_model extends CI_Model{
         $this->db->join('tbl_keranjang','tbl_keranjang.id_catalog=tbl_catalog.id_catalog');
         $this->db->join('tbl_reselleradmin','tbl_reselleradmin.id_reselleradmin=tbl_keranjang.id_reselleradmin');
         $this->db->where('tbl_reselleradmin.id_reselleradmin', $id_reselleradmin);
-        $this->db->where('tbl_catalog.status_sale', '0')->where('tbl_catalog.status_sale', '1');
+        $this->db->where('tbl_catalog.status_sale', '0')->or_where('tbl_catalog.status_sale', '1');
         $this->db->order_by('tbl_keranjang.update_date', 'ASC');
         $query=$this->db->get();
         return $query;
