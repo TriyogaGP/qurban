@@ -221,7 +221,7 @@ class Json extends CI_Controller {
 	
 	function loginreseller()
     {
-        $this->header()
+        $this->header();
         $username = $this->input->get('username');
         $password = $this->input->get('password');
 
@@ -317,7 +317,7 @@ class Json extends CI_Controller {
     
     function addcart()
     {
-        $this->header()
+        $this->header();
         $id_catalog = $this->input->get('id_catalog');
         $id_reselleradmin = $this->input->get('id_reselleradmin');
 
