@@ -23,7 +23,7 @@ class Json extends CI_Controller {
             $sapis[] = array(
                 "kodejenis"     =>  $sapi_hasil->id_kategori,
                 "kategori"      =>  $sapi_hasil->nama_kategori,
-                "gambar"        =>  "http://rumahcendekiabogor.com/qurban/assets/images/".$sapi_hasil->gambar,
+                "gambar"        =>  "http://rumahcendekiabogor.com/qurbanqu/assets/images/".$sapi_hasil->gambar,
             );
         }
         foreach ($data_kambing as $kambing_hasil)
@@ -31,7 +31,7 @@ class Json extends CI_Controller {
             $kambings[] = array(
                 "kodejenis"     =>  $kambing_hasil->id_kategori,
                 "kategori"      =>  $kambing_hasil->nama_kategori,
-                "gambar"        =>  "http://rumahcendekiabogor.com/qurban/assets/images/".$kambing_hasil->gambar,
+                "gambar"        =>  "http://rumahcendekiabogor.com/qurbanqu/assets/images/".$kambing_hasil->gambar,
             );
         }
         if($data_sapi || $data_kambing){
@@ -82,7 +82,7 @@ class Json extends CI_Controller {
                 "harga"         =>  $total,
                 "usia"          =>  $sapi_hasil->usia,
                 "reseller"      =>  "$total_jml",
-                "gambar"        =>  "http://rumahcendekiabogor.com/qurban/assets/images/".$sapi_hasil->gambar,
+                "gambar"        =>  "http://rumahcendekiabogor.com/qurbanqu/assets/images/".$sapi_hasil->gambar,
                 "status_sale"   =>  $sapi_hasil->status_sale,
             );
         }
@@ -111,7 +111,7 @@ class Json extends CI_Controller {
                 "harga"         =>  $total,
                 "usia"          =>  $kambing_hasil->usia,
                 "reseller"      =>  "$total_jml",
-                "gambar"        =>  "http://rumahcendekiabogor.com/qurban/assets/images/".$kambing_hasil->gambar,
+                "gambar"        =>  "http://rumahcendekiabogor.com/qurbanqu/assets/images/".$kambing_hasil->gambar,
                 "status_sale"   =>  $kambing_hasil->status_sale,
             );
         }
@@ -166,7 +166,7 @@ class Json extends CI_Controller {
                     "harga"         =>  $total,
                     "usia"          =>  $sapi_hasil->usia,
                     "reseller"      =>  "$total_jml",
-                    "gambar"        =>  "http://rumahcendekiabogor.com/qurban/assets/images/".$sapi_hasil->gambar,
+                    "gambar"        =>  "http://rumahcendekiabogor.com/qurbanqu/assets/images/".$sapi_hasil->gambar,
                     "status_sale"   =>  $sapi_hasil->status_sale,
                 );
             }
@@ -198,7 +198,7 @@ class Json extends CI_Controller {
                     "harga"         =>  $total,
                     "usia"          =>  $kambing_hasil->usia,
                     "reseller"      =>  "$total_jml",
-                    "gambar"        =>  "http://rumahcendekiabogor.com/qurban/assets/images/".$kambing_hasil->gambar,
+                    "gambar"        =>  "http://rumahcendekiabogor.com/qurbanqu/assets/images/".$kambing_hasil->gambar,
                     "status_sale"   =>  $kambing_hasil->status_sale,
                 );
             }
@@ -233,6 +233,7 @@ class Json extends CI_Controller {
         $response = array();
         $response['data'] = array();
         $response['keranjang'] = array();
+        $response['myorder'] = array();
         foreach ($result as $hasil)
         {
             if(empty($hasil->foto)){$foto = "user.png";}else{$foto = $hasil->foto;}
@@ -269,7 +270,7 @@ class Json extends CI_Controller {
                 "no_telp"           => $hasil->no_telp,
                 "alamat"            => $hasil->alamat,
                 "code"              => $hasil->code,
-                "foto"              => "http://rumahcendekiabogor.com/qurban/assets/images/gambar_user/".$foto,
+                "foto"              => "http://rumahcendekiabogor.com/qurbanqu/assets/images/gambar_user/".$foto,
                 "aktif_state"       => $hasil->aktif_state,
             );
         }
