@@ -17,8 +17,7 @@ class Json extends CI_Controller {
 
     function getmenu()
     {
-        header('Content-Type: application/json');
-        $versi = "1.00";
+        $this->header()
 
         $data_sapi = $this->Dashboard_model->get_all_menucatalogSapi()->result();
         $data_kambing = $this->Dashboard_model->get_all_menucatalogKambing()->result();
@@ -44,11 +43,11 @@ class Json extends CI_Controller {
         if($data_sapi || $data_kambing){
             $response['data_menu_sapi'] = $sapis;
             $response['data_menu_kambing'] = $kambings;
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "success";
             echo json_encode($response,TRUE);    
         }else{
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "failed";
             echo json_encode($response,TRUE);           
         }
@@ -57,9 +56,7 @@ class Json extends CI_Controller {
 
 	function gethewan()
 	{
-	    header('Content-Type: application/json');
-	    $versi = "1.00";
-
+	    $this->header();
         $data_sapi = $this->Dashboard_model->get_all_catalogSapi()->result();
         $data_kambing = $this->Dashboard_model->get_all_catalogKambing()->result();
         $response = array();
@@ -125,11 +122,11 @@ class Json extends CI_Controller {
         if($data_sapi || $data_kambing){
             $response['data_sapi'] = $sapis;
             $response['data_kambing'] = $kambings;
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "success";
             echo json_encode($response,TRUE);    
         }else{
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "failed";
             echo json_encode($response,TRUE);           
         }
@@ -137,9 +134,7 @@ class Json extends CI_Controller {
 	
 	function getcarihewan()
 	{
-	    header('Content-Type: application/json');
-	    $versi = "1.00";
-
+	    $this->header();
         $bobot = $this->input->get('bobot');
         $batas_awal = $bobot;
         $batas_akhir = $bobot+100;
@@ -215,11 +210,11 @@ class Json extends CI_Controller {
         if($data_sapi || $data_kambing){
             $response['data_sapi'] = $sapis;
             $response['data_kambing'] = $kambings;
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "success";
             echo json_encode($response,TRUE);    
         }else{
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "failed";
             echo json_encode($response,TRUE);           
         }
@@ -227,8 +222,7 @@ class Json extends CI_Controller {
 	
 	function loginreseller()
     {
-        header('Content-Type: application/json');
-        $versi = "1.00";
+        $this->header()
         $username = $this->input->get('username');
         $password = $this->input->get('password');
 
@@ -312,11 +306,11 @@ class Json extends CI_Controller {
             $response['myorder'] = $myorders;
             $response['total_harga_keranjang'] = "Rp. ".number_format($total_seluruhkeranjang);
             $response['total_harga_myorder'] = "Rp. ".number_format($total_seluruhmyorder);
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "success";
             echo json_encode($response);    
         }else{
-            $response['versi'] = $versi;
+            $response['versi'] = $this->versi;
             $response['status_sistem'] = "failed";
             echo json_encode($response);            
         }
@@ -324,8 +318,7 @@ class Json extends CI_Controller {
     
     function addcart()
     {
-        header('Content-Type: application/json');
-        $versi = "1.00";
+        $this->header()
         $id_catalog = $this->input->get('id_catalog');
         $id_reselleradmin = $this->input->get('id_reselleradmin');
 
