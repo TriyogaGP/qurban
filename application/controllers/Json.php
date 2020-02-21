@@ -8,10 +8,11 @@ class Json extends CI_Controller {
 		$this->load->model('Login_model');
 	}
 
-    function header()
+    function header($versi)
     {
         header('Content-Type: application/json');
         $versi = "1.00";
+        return $versi;
     }
 
     function getmenu()
@@ -372,7 +373,7 @@ class Json extends CI_Controller {
 
     function orderhewan()
     {
-        $this->header();
+        $this->header($versi);
         $tes = $this->input->post('tes');
         $data = array(
             "tes" => $tes,
