@@ -105,6 +105,8 @@ $route['historycustomer'] = 'Dashboard/historycustomer';
 $route['Fetchhistorycustomer'] = 'Dashboard/Fetchhistorycustomer';
 $route['lookkeranjangReseller'] = 'Dashboard/lookkeranjangReseller';
 $route['checkoutallkeranjang'] = 'Dashboard/checkoutallkeranjang';
+$route['getjmlKeranjang'] = 'Dashboard/getjmlKeranjang';
+$route['getjmlCustomer'] = 'Dashboard/getjmlCustomer';
 
 //CRONJOB
 $route['dailyActivitypesan'] = 'Cronjob/deleteDailyKeranjangPesan';

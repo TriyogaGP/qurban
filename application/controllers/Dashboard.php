@@ -16,10 +16,10 @@ class Dashboard extends CI_Controller {
 	}
 
 	private function tampilanViewHeader(){
-		$data = array(
-      'jml_keranjang' => $this->Dashboard_model->get_all_keranjangbulanBY($this->session->userdata('ses_idadmin'))->num_rows(),
-      'jml_customer' => $this->Dashboard_model->get_all_customerBY2($this->session->userdata('ses_idadmin'))->num_rows(),
-    );
+		// $data = array(
+  //     'jml_keranjang' => $this->Dashboard_model->get_all_keranjangbulanBY($this->session->userdata('ses_idadmin'))->num_rows(),
+  //     'jml_customer' => $this->Dashboard_model->get_all_customerBY2($this->session->userdata('ses_idadmin'))->num_rows(),
+  //   );
 		$this->load->view('tampilan/header', $data);
 	}
 
@@ -1126,6 +1126,22 @@ class Dashboard extends CI_Controller {
 		$data = array(
 			"pesan" => $output,
 			"total" => $total,
+		);
+		echo json_encode($data);
+	}
+
+	function getjmlKeranjang(){
+		$jml_keranjang = $this->Dashboard_model->get_all_keranjangbulanBY($this->session->userdata('ses_idadmin'))->num_rows();
+		$data = array(
+			"total" => $jml_keranjang,
+		);
+		echo json_encode($data);
+	}
+
+	function getjmlCustomer(){
+    $jml_customer = $this->Dashboard_model->get_all_customerBY2($this->session->userdata('ses_idadmin'))->num_rows();
+		$data = array(
+			"total" => $jml_customer,
 		);
 		echo json_encode($data);
 	}
