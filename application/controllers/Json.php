@@ -172,7 +172,7 @@ class Json extends CI_Controller {
                 );
             }
         }else{
-            $sapis = "kosong";
+            $sapis[] = "";
         }
         if($data_kambing->num_rows() > 0){
             foreach ($data_kambing->result() as $kambing_hasil)
@@ -204,7 +204,7 @@ class Json extends CI_Controller {
                 );
             }
         }else{
-            $kambings = "kosong";
+            $kambings[] = "";
         }
         if($data_sapi || $data_kambing){
             $response['data_sapi'] = $sapis;

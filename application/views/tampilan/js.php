@@ -165,9 +165,9 @@
 		   		{
 				    if(data.total > 0)
 		    		{
-		     			$('.totalKeranjang').html(data.total);
+		     			$('.totalCustomer').html(data.total);
 			    	}else{
-			    		$('.totalKeranjang').html('0');
+			    		$('.totalCustomer').html('0');
 			    	}
 				}
 			});
