@@ -21,8 +21,8 @@ class Cronjob extends CI_Controller {
 			if($total_jml == 1){
 				$kirimdata['status_sale'] = "0";
 				$kirimdata['aktif_state'] = "1";
-				$this->Dashboard_model->update_catalog($kirimdata,$value->id_catalog);
 	    		$this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
+				$this->Dashboard_model->update_catalog($kirimdata,$value->id_catalog);
 			}else{
 	    		$this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
 			}
