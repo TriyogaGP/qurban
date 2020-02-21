@@ -237,7 +237,8 @@ class Json extends CI_Controller {
         foreach ($result as $hasil)
         {
             if(empty($hasil->foto)){$foto = "user.png";}else{$foto = $hasil->foto;}
-            $total_seluruh = 0; 
+            $total_seluruhkeranjang = 0; 
+            $total_seluruhmyorder = 0; 
             $keranjang = $this->Dashboard_model->get_all_keranjangBYJSON($hasil->id_reselleradmin)->result();
             foreach ($keranjang as $value) {
                 $total_jml = 0;
@@ -259,7 +260,7 @@ class Json extends CI_Controller {
                     "usia"          => $value->usia,
                     "totalReseller" => $total_jml." Reseller",
                 );
-                $total_seluruh += $total_harga;
+                $total_seluruhkeranjang += $total_harga;
             }
 
             $myorder = $this->Dashboard_model->get_all_myorderBYJSON($hasil->id_reselleradmin)->result();
@@ -283,7 +284,7 @@ class Json extends CI_Controller {
                     "usia"          => $value->usia,
                     "totalReseller" => $total_jml." Reseller",
                 );
-                $total_seluruh += $total_harga;
+                $total_seluruhmyorder += $total_harga;
             }
             $posts = array(
                 "id_reselleradmin"  => $hasil->id_reselleradmin,
@@ -302,7 +303,8 @@ class Json extends CI_Controller {
             $response['data'] = $posts;
             $response['keranjang'] = $keranjangs;
             $response['myorder'] = $myorders;
-            $response['total_harga'] = "Rp. ".number_format($total_seluruh);
+            $response['total_harga_keranjang'] = "Rp. ".number_format($total_seluruhkeranjang);
+            $response['total_harga_myorder'] = "Rp. ".number_format($total_seluruhmyorder);
             $response['versi'] = $versi;
             $response['status_sistem'] = "success";
             echo json_encode($response);    
