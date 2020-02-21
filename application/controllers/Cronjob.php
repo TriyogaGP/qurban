@@ -69,7 +69,7 @@ class Cronjob extends CI_Controller {
 				$this->Dashboard_model->update_catalog($kirimdata2,$value->id_catalog);
 	    		$this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
 	    		$this->Dashboard_model->hapus_customer($value->id_reselleradmin,$value->id_catalog);
-	    		unlink("assets/images/gambar_bukti/".$value['bukti']);
+	    		unlink("assets/images/gambar_bukti/".$value->bukti);
 	    		$this->Dashboard_model->hapus_bukti($value->id_customer);
 			}
 		}
@@ -112,7 +112,7 @@ class Cronjob extends CI_Controller {
 				$this->Dashboard_model->update_catalog($kirimdata2,$value->id_catalog);
 	    		$this->Dashboard_model->hapus_keranjang($value->id_reselleradmin,$value->id_catalog);
 	    		$this->Dashboard_model->hapus_customer($value->id_reselleradmin,$value->id_catalog);
-	    		unlink("assets/images/gambar_bukti/".$value['bukti']);
+	    		unlink("assets/images/gambar_bukti/".$value->bukti);
 	    		$this->Dashboard_model->hapus_bukti($value->id_customer);
 			}
 		}
