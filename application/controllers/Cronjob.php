@@ -11,7 +11,7 @@ class Cronjob extends CI_Controller {
 	{
 		date_default_timezone_set("Asia/Jakarta");
 		$waktu = date("Y-m-d H:i:s");
-		$DataCronjob=$this->db->query("SELECT A.update_date,A.id_catalog,B.status_sale,B.id_catalog FROM tbl_keranjang AS A INNER JOIN tbl_catalog AS B ON A.id_catalog=B.id_catalog WHERE DATE_ADD(A.update_date, INTERVAL 1 HOUR)<'$waktu' && B.status_sale='1'")->result();
+		$DataCronjob=$this->db->query("SELECT A.update_date,A.id_catalog,A.id_reselleradmin,B.status_sale,B.id_catalog FROM tbl_keranjang AS A INNER JOIN tbl_catalog AS B ON A.id_catalog=B.id_catalog WHERE DATE_ADD(A.update_date, INTERVAL 1 HOUR)<'$waktu' && B.status_sale='1'")->result();
 		foreach ($DataCronjob as $value) {
 			$total_jml = 0;
 			$jmlCatalogKeranjang = $this->Dashboard_model->get_total_keranjangBY($value->id_catalog); 
