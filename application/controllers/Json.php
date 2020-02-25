@@ -375,11 +375,34 @@ class Json extends CI_Controller {
     {
         $this->header();
         $id_catalog = $this->input->post('id_catalog');
-        $id_catalog = $this->input->post('id_catalog');
-        $data = array(
-            "tes" => $tes,
-            "versi" => $this->versi,
-        );
-        echo json_encode($data);
+        $id_reselleradmin = $this->input->post('id_reselleradmin');
+        $nama_customer = $this->input->post('nama_customer');
+        $alamat_customer = $this->input->post('alamat_customer');
+        $no_telp_customer = $this->input->post('no_telp_customer');
+        $type_bayar = $this->input->post('type_bayar');
+        $jml = $this->input->post('jml');
+        $tanggal_pengiriman = $this->input->post('tanggal_pengiriman');
+        $jml_data = count($id_catalog);
+        for($i=0;$i<$jml_data;$i++)
+        {
+            $kirimdata['id_catalog'] = $id_catalog[$i];
+            $kirimdata['id_reselleradmin'] = $id_reselleradmin[$i];
+            $kirimdata['nama_customer'] = $nama_customer;
+            $kirimdata['alamat_customer'] = $alamat_customer;
+            $kirimdata['no_telp_customer'] = $no_telp_customer;
+            $kirimdata['type_bayar'] = $type_bayar[$i];
+            $kirimdata['jml'] = $jml[$i];
+            $kirimdata['tanggal_pengiriman'] = $tanggal_pengiriman[$i];
+            $kirimdata['status'] = "1";
+            $success = $this->Dashboard_model->update_customer($kirimdata,$id_catalog[$i]);
+        }
+
+        if($success){
+            $data['status'] = "Berhasil";
+            echo json_encode($data);
+        }else{
+            $data['status'] = "Gagal";
+            echo json_encode($data);
+        }
     }
 }
