@@ -403,10 +403,10 @@ class Json extends CI_Controller {
                 $kirimdata['update_date'] = $tgl;
                 $success = $this->Dashboard_model->insert_customer($kirimdata);
                 if($success){
-                        $customer = $this->Dashboard_model->get_all_customerBY4($id_reselleradmin,$id_catalog[$i]);
-                        $kirimdata2['update_upload'] = $tgl;
-                        $kirimdata2['id_customer'] = $customer[0]['id_customer'];
-                        $berhasilmasuk = $this->Dashboard_model->insert_bukti($kirimdata2);
+                    $customer = $this->Dashboard_model->get_all_customerBY4($id_reselleradmin,$id_catalog[$i]);
+                    $kirimdata2['update_upload'] = $tgl;
+                    $kirimdata2['id_customer'] = $customer[0]['id_customer'];
+                    $berhasilmasuk = $this->Dashboard_model->insert_bukti($kirimdata2);
                 }
             }
         }
