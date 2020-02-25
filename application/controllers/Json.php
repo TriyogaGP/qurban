@@ -386,7 +386,7 @@ class Json extends CI_Controller {
         for($i=0;$i<$jml_data;$i++)
         {
             $kirimdata['id_catalog'] = $id_catalog[$i];
-            $kirimdata['id_reselleradmin'] = $id_reselleradmin[$i];
+            $kirimdata['id_reselleradmin'] = $id_reselleradmin;
             $kirimdata['nama_customer'] = $nama_customer;
             $kirimdata['alamat_customer'] = $alamat_customer;
             $kirimdata['no_telp_customer'] = $no_telp_customer;
