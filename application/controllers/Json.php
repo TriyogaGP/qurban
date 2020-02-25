@@ -374,6 +374,8 @@ class Json extends CI_Controller {
     function orderhewan()
     {
         $this->header();
+        date_default_timezone_set("Asia/Jakarta");
+        $tgl = date("Y-m-d H:i:s");
         $id_catalog = $this->input->post('id_catalog');
         $id_reselleradmin = $this->input->post('id_reselleradmin');
         $nama_customer = $this->input->post('nama_customer');
@@ -385,6 +387,7 @@ class Json extends CI_Controller {
         $jml_data = count($id_catalog);
         for($i=0;$i<$jml_data;$i++)
         {
+            $customer = $this->Dashboard_model->get_all_customerBY4($id_reselleradmin,$id_catalog[$i])->num_rows();
             $kirimdata['id_catalog'] = $id_catalog[$i];
             $kirimdata['id_reselleradmin'] = $id_reselleradmin;
             $kirimdata['nama_customer'] = $nama_customer;
@@ -394,7 +397,12 @@ class Json extends CI_Controller {
             $kirimdata['jml'] = $jml[$i];
             $kirimdata['tanggal_pengiriman'] = $tanggal_pengiriman[$i];
             $kirimdata['status'] = "1";
-            $success = $this->Dashboard_model->update_customer($kirimdata,$id_catalog[$i]);
+            if($customer > 0){
+                $success = $this->Dashboard_model->update_customer($kirimdata,$id_catalog[$i]);
+            }else{
+                $kirimdata['update_date'] = $tgl;
+                $success = $this->Dashboard_model->insert_customer($kirimdata);
+            }
         }
 
         if($success){
