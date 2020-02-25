@@ -387,7 +387,7 @@ class Json extends CI_Controller {
         $jml_data = count($id_catalog);
         for($i=0;$i<$jml_data;$i++)
         {
-            $customer = $this->Dashboard_model->get_all_customerBY4($id_reselleradmin,$id_catalog[$i])->num_rows();
+            $cekcustomer = $this->Dashboard_model->get_all_customerBY4($id_reselleradmin,$id_catalog[$i]);
             $kirimdata['id_catalog'] = $id_catalog[$i];
             $kirimdata['id_reselleradmin'] = $id_reselleradmin;
             $kirimdata['nama_customer'] = $nama_customer;
@@ -397,15 +397,21 @@ class Json extends CI_Controller {
             $kirimdata['jml'] = $jml[$i];
             $kirimdata['tanggal_pengiriman'] = $tanggal_pengiriman[$i];
             $kirimdata['status'] = "1";
-            if($customer > 0){
+            if($cekcustomer->num_rows() > 0){
                 $success = $this->Dashboard_model->update_customer($kirimdata,$id_catalog[$i]);
             }else{
                 $kirimdata['update_date'] = $tgl;
                 $success = $this->Dashboard_model->insert_customer($kirimdata);
+                if($success){
+                    $customer = $this->Dashboard_model->get_all_customerBY4($id_reselleradmin,$id_catalog[$i]);
+                    $kirimdata2['update_upload'] = $tgl;
+                    $kirimdata2['id_customer'] = $customer[0]['id_customer'];
+                    $berhasilmasuk = $this->Dashboard_model->insert_bukti($kirimdata2);
+                }
             }
         }
 
-        if($success){
+        if($berhasilmasuk){
             $data['status'] = "Berhasil";
             echo json_encode($data);
         }else{
